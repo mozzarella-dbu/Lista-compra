@@ -1,0 +1,40 @@
+{%extends "layout.html"%}
+
+{%block body%}
+<h1>Lista de la compra</h1>
+
+
+<div class="form-container">
+    <form method="POST">
+        <input type="text" name="Producto" placeholder="Inserta un producto">
+        <input type="integer" name="Cantidad" placeholder="Inserta una cantidad del producto">
+        <button type="submit" formaction="{{url_for('index')}}"> Agregar producto y cantidad</button>
+    </form>
+    
+</div>
+
+{%if mensaje%}
+<p>{{mensaje}}</p>
+{%endif%}
+
+<ul>
+
+    {%for x in productos%}
+    <li>{{x.Producto}}: {{x.Cantidades}}</li>
+    {%endfor%}  
+
+</ul>
+
+<p>Si quieres borrar algun producto de la lista pincha sobre el</p>
+
+<ul>
+    {%for x in productos%}
+        <li>
+            <a href="{{url_for('eliminar', Producto=x.Producto)}}">{{x.Producto}}</a>
+        </li>
+       
+    {%endfor%}
+    
+</ul>
+
+{%endblock%}
