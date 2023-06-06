@@ -26,7 +26,6 @@ def añadir_producto(producto, cantidades):
         db.session.add(nuevo_producto)
         db.session.commit()
         print("Producto agregado correctamente")
-#para agregar productos de forma manual desde el codigo
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -68,56 +67,3 @@ if __name__=="__main__":
     with app.app_context():
         db.create_all()
     app.run(debug=True, use_reloader=True)
-#use reloader para actualizar automaticamente el codigo
-    
-
-"""
-Lista_producto={}
-
-@app.route("/", methods=["GET", "POST"])
-def index():
-    
-    if request.method=="POST":
-        producto=request.form.get("Producto")
-        cantidad=request.form.get("Cantidad")
-        Lista_producto[producto]=cantidad
-
-    return render_template("index.html", Lista_producto=Lista_producto)
-
-----------------
-    AHORA EN HTML
-----------------
-
-    {%extends "layout.html"%}
-
-{%block body%}
-<h1>Lista de la compra</h1>
-
-<style>
-    form {
-        display: inline-block;
-        margin-right: 10px; /* Ajusta el margen derecho entre los formularios */
-    }
-</style>
-
-<div class="form-container">
-    <form method="POST">
-        <input type="text" name="Producto" placeholder="Inserta un producto">
-        <input type="integer" name="Cantidad" placeholder="Inserta una cantidad del producto">
-        <button type="submit" formaction="{{url_for('index')}}"> Agregar producto y cantidad</button>
-    </form>
-    
-</div>
-<ul>
-
-    {%for x, y in Lista_producto.items()%}
-    <li>{{x}}:{{y}}</li>
-    {%endfor%}  
-
-</ul>
-
-{%endblock%}
-    --------------------------------------
-    ESTO ES PARA DEVOLVER UN DICCIONARIO DIRECTAMENTE METIENDO LOS PRODUCTOS Y CANTIDADES
-    --------------------------------------
-    """
